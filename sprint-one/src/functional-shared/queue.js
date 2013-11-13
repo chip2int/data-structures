@@ -3,38 +3,48 @@ var makeQueue = function(){
   var instance = {};
 
   // Use an object with numeric keys to store values
-  var storage = {};
-  var counter = 0;
+  instance.storage = {};
+  instance.counter = 0;
 
   // Implement the methods below
 
-  instance.enqueue = function(value){
+  instance.enqueue = queueMethods.enqueue;
+  instance.dequeue = queueMethods.dequeue;
+  instance.size = queueMethods.size;
+
+
+  return instance;
+
+};
+
+
+var queueMethods = {
+
+  enqueue:function(value){
     //push
-    storage[counter]= value;
-    counter++;
+    this.storage[this.size()]= value;
+    this.counter++;
 
-  };
+  },
 
-  instance.dequeue = function(){
+  dequeue:function(){
     //shift
-    if (counter >0){
-      counter--;
+    if (this.counter >0){
+      this.counter--;
       var holder = storage[0];
       delete storage[0];
       //move everything else up
-      for ( i = 0; i < counter; i++){
+      for ( var i = 0; i < this.counter; i++){
         storage[i] = storage[i+1];
       }
       return holder;
     }
-  };
+  },
 
-  instance.size = function(){
+  size:function(){
     //length
-    return counter;
-  };
+    return this.counter;
+  }
 
-  return instance;
 };
 
-var queueMethods = {};
