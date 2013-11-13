@@ -18,15 +18,15 @@
 
   var stackMethods = {
     push:function(value){
-      this.storage[size()] = value;
+      this.storage[this.size()] = value;
       this.counter++;
     },
 
     pop:function(){
       if(this.counter > 0){
         this.counter--;
-        var holder = this.storage[size()];
-        delete this.storage[size()];
+        var holder = this.storage[this.size()];
+        delete this.storage[this.size()];
         return holder;
       }
     },
