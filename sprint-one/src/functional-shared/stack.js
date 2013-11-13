@@ -1,32 +1,40 @@
-var makeStack = function() {
-  // Hey! Copy your code from src/functional/stack.js and paste it here
-var instance = {};
+  var makeStack = function() {
+    // Hey! Copy your code from src/functional/stack.js and paste it here
+    var instance = {};
 
-  // Use an object with numeric keys to store values
-  storage = {};
-  counter = 0; // Hint: set an initial value here
+    // Use an object with numeric keys to store values
+    instance.storage = {};
+    instance.counter = 0; // Hint: set an initial value here
 
-  // Implement the methods below
+    // Implement the methods below
 
-  instance.push = function(value){
-    storage[instance.size()] = value;
-    counter++;
+    instance.pop = stackMethods.pop;
+    instance.push = stackMethods.push;
+    instance.size = stackMethods.size;
+
+    return instance;
   };
 
-  instance.pop = function(){
-    if(counter > 0){
-      counter--;
-      var holder = storage[instance.size()];
-      delete storage[instance.size()];
-      return holder;
+
+  var stackMethods = {
+    push:function(value){
+      this.storage[size()] = value;
+      this.counter++;
+    },
+
+    pop:function(){
+      if(this.counter > 0){
+        this.counter--;
+        var holder = this.storage[size()];
+        delete this.storage[size()];
+        return holder;
+      }
+    },
+
+    size:function(){
+      return this.counter;
     }
+
   };
 
-  instance.size = function(){
-    return counter;
-  };
 
-  return instance;
-};
-
-var stackMethods = {};
