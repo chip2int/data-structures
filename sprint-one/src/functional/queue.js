@@ -18,13 +18,12 @@ var makeQueue = function(){
     //shift
     if (counter >0){
       counter--;
-      var holder = storage[counter];
-      delete storage[counter];
+      var holder = storage[0];
+      delete storage[0];
       //move everything else up
       for ( i = 0; i < counter; i++){
-        
+        storage[i] = storage[i+1];
       }
-
       return holder;
     }
   };
@@ -33,7 +32,6 @@ var makeQueue = function(){
     //length
     return counter;
   };
-
 
   return instance;
 };
