@@ -31,11 +31,11 @@ var queueMethods = {
     //shift
     if (this.counter >0){
       this.counter--;
-      var holder = storage[0];
-      delete storage[0];
+      var holder = this.storage[0];
+      delete this.storage[0];
       //move everything else up
       for ( var i = 0; i < this.counter; i++){
-        storage[i] = storage[i+1];
+        this.storage[i] = this.storage[i+1];
       }
       return holder;
     }
