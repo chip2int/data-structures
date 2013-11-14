@@ -5,7 +5,6 @@ var makeLinkedList = function(){
   list.tail = null;
 
   list.addToTail = function(){
-    debugger;
     var temp = makeNode(arguments[0]);
     if (this.head === null) {
       this.head = temp;
@@ -35,7 +34,6 @@ var makeLinkedList = function(){
   // else {return this.contains(target,node.next);}
 
   // while solution
-  debugger;
     if(node === undefined){ node = this.head;}
     while(node !== null){
       if(node.value=== target){
