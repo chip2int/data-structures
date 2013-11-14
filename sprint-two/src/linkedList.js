@@ -26,9 +26,24 @@ var makeLinkedList = function(){
     return retValue;
   };
 
-  list.contains = function(){
-  };
+  list.contains = function(target , node){
+  //recursive solution
+  // if(node === undefined){ node = list.head;}
+  // if (node.value === target){return true;}
+  // else if (node.next === null){return false;}
+  // else {return this.contains(target,node.next);}
 
+  // while solution
+    if(node === undefined){ node = list.head;}
+    while(node !== null){
+      if(node.value=== target){
+        return true;
+      } else {
+        node = node.next;
+      }
+    }
+    return false;
+  };
   return list;
 };
 
