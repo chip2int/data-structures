@@ -17,4 +17,10 @@ describe("linkedList", function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it("Check addToTail and contains", function() {
+    linkedList.addToTail("5");
+    expect(linkedList.contains("5")).toEqual(true);
+    expect(linkedList.contains("no")).toEqual(false);
+  });
+
 });
