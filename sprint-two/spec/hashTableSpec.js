@@ -4,7 +4,7 @@ describe("hashTable", function() {
   beforeEach(function() {
     hashTable = new HashTable();
   });
-/*
+
   it("should have methods named 'insert' and 'retrieve", function() {
     expect(hashTable.insert).toEqual(jasmine.any(Function));
     expect(hashTable.retrieve).toEqual(jasmine.any(Function));
@@ -38,7 +38,7 @@ describe("hashTable", function() {
     expect(hashTable.retrieve("hello")).toEqual(null);
     expect(hashTable.retrieve("hola")).toEqual("mundo");
   });
-*/
+
     it("If we insert 3 key value pairs at the same index and remove the middle one, we should be able to retrieve 2 of them, but not the third.", function() {
     spyOn(window, 'getIndexBelowMaxForKey').andReturn(4);
     hashTable.insert("hello","world");
