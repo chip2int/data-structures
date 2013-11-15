@@ -1,4 +1,10 @@
-var stackMethods = {
+var Stack = function() {
+  // Hey! Copy your code from src/prototypal/stack.js and paste it here
+  this.storage = {};
+  this.counter = 0;
+};
+
+Stack.prototype = {
   push:function(value){
     this.storage[this.size()] = value;
     this.counter++;
@@ -16,16 +22,4 @@ var stackMethods = {
   size:function(){
     return this.counter;
   }
-
 };
-
-
-var Stack = function() {
-  // Hey! Copy your code from src/prototypal/stack.js and paste it here
-  this.storage = {};
-  this.counter = 0;
-};
-
-Stack.prototype.push = stackMethods.push;
-Stack.prototype.pop = stackMethods.pop;
-Stack.prototype.size = stackMethods.size;
