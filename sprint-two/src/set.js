@@ -1,16 +1,16 @@
 var makeSet = function(){
-  var set = Object.create(setPrototype); // fix me
-  set._storage = undefined;
-  return set;
+  this._storage = {};
 };
 
-var setPrototype = {};
 
-setPrototype.add = function(){
+makeSet.prototype.add = function(value){
+  this._storage.value = true;
 };
 
-setPrototype.contains = function(){
+makeSet.prototype.contains = function(target){
+  return (this._storage.value === undefined)?false:true;
 };
 
-setPrototype.remove = function(){
+makeSet.prototype.remove = function(target){
+  delete this._storage.target;
 };

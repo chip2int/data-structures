@@ -2,7 +2,7 @@ describe("set", function() {
   var set;
 
   beforeEach(function() {
-    set = makeSet();
+    set = new makeSet();
   });
 
   it("should have methods named 'add', 'contains', and 'remove'", function() {
@@ -26,9 +26,5 @@ describe("set", function() {
     set.remove(5);
     expect(set.contains(5)).toBe(true);
   });
-
-  // adding then removing contain is false
-
-
 
 });
