@@ -12,17 +12,23 @@ describe("hashTable", function() {
 
   it("We should be able to retrieve a string after we insert it", function() {
     hashTable.insert("hello","world");
-    expect(hashTable.retrieve("hello")).toEqual("world"));
+    expect(hashTable.retrieve("hello")).toEqual("world");
   });
 
   it("Retrieving a value we haven't stored should return undefined.", function() {
     hashTable.insert("hello","world");
-    expect(hashTable.retrieve("hola")).toEqual(undefined));
+    expect(hashTable.retrieve("hola")).toEqual(undefined);
   });
 
   it("We should be able to retrieve an object after we insert it", function() {
-    hashTable.insert("hello",{myObject: "totally awesome"}});
-    expect(hashTable.retrieve("hello")).toEqual({myObject: "totally awesome"}));
+    hashTable.insert("hello",{myObject: "totally awesome"});
+    expect(hashTable.retrieve("hello")).toEqual({myObject: "totally awesome"});
+  });
+
+  it("If we insert a string and then remove the string, retrieve should return undefined.", function() {
+    hashTable.insert("hello","world");
+    hashTable.remove("hello");
+    expect(hashTable.retrieve("hello")).toEqual("world");
   });
 
   it("should handle hash function collisions", function(){
