@@ -15,6 +15,7 @@ var DoubleLinkedList = function(){
     if (this.tail !== null) {
       this.tail.next = temp;
     }
+    temp.previous = this.tail;
     this.tail = temp;
   };
 
@@ -23,6 +24,7 @@ var DoubleLinkedList = function(){
     var retValue = this.head.value;
     delete this.head;
     this.head = next;
+    this.head.previous = null;
     return retValue;
   };
 
@@ -44,6 +46,7 @@ var DoubleLinkedList = function(){
       }
 
       parent.next = node.next;
+      node.next.previous = parent;
       delete node;
     }
   };
@@ -83,6 +86,7 @@ var DoubleLinkedList = function(){
 var makeDNode = function(value, target){
   var node = {};
   node.value = value; // Hash  --> {key, target}
+  node.previous = null;
   node.next = null;
   node.target = target; // Used for hash table
   return node;
