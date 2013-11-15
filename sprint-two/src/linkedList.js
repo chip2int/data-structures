@@ -26,7 +26,7 @@ var makeLinkedList = function(){
     return retValue;
   };
 
-  list.contains = function(target , node){
+  list.getNodeWithTarget = function(target , node){
   //recursive solution
   // if(node === undefined){ node = list.head;}
   // if (node.value === target){return true;}
@@ -37,13 +37,19 @@ var makeLinkedList = function(){
     if(node === undefined){ node = this.head;}
     while(node !== null){
       if(node.value=== target){
-        return true;
+        return node;
       } else {
         node = node.next;
       }
     }
-    return false;
+    return null;
   };
+
+
+  list.contains = function (target, node) {
+    return ((this.getNodeWithTarget(target, node) === null) ? false:true);
+  };
+
   return list;
 };
 
