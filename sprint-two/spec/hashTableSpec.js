@@ -25,11 +25,20 @@ describe("hashTable", function() {
     expect(hashTable.retrieve("hello")).toEqual({myObject: "totally awesome"});
   });
 
-  it("If we insert a string and then remove the string, retrieve should return undefined.", function() {
+  it("If we insert a string and then remove the string, retrieve should return null.", function() {
     hashTable.insert("hello","world");
     hashTable.remove("hello");
-    expect(hashTable.retrieve("hello")).toEqual("world");
+    expect(hashTable.retrieve("hello")).toEqual(null);
   });
+
+  it("If we insert 2 strings, and then remove the first string, the second string should still be present.", function() {
+    hashTable.insert("hello","world");
+    hashTable.insert("hola","mundo");
+    hashTable.remove("hello");
+    expect(hashTable.retrieve("hello")).toEqual(null)
+    expect(hashTable.retrieve("hola")).toEqual("mundo");
+  });
+
 
   it("should handle hash function collisions", function(){
     // force the hash function to return 0

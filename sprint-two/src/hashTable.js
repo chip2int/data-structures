@@ -14,7 +14,8 @@ var HashTable = function(){
 
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  if(this.retrieve(i) === undefined){
+  debugger;
+  if(this.retrieve(k) === undefined){
     this._storage.set(i, makeLinkedList());
   }
   (this._storage.get(i)).addToTail(k,v);
@@ -22,13 +23,19 @@ HashTable.prototype.insert = function(k, v){
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
+  debugger
   var temp =this._storage.get(i);
   return ((temp !== undefined) ? temp.getNodeTarget(k) : undefined);
 };
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(i, undefined);
+  debugger;
+  var temp = this._storage.get(i);
+  if (temp !== undefined) {
+    temp.removeHead(k);
+  }
+
 };
 
 
