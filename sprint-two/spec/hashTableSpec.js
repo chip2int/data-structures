@@ -10,6 +10,21 @@ describe("hashTable", function() {
     expect(hashTable.retrieve).toEqual(jasmine.any(Function));
   });
 
+  it("We should be able to retrieve a string after we insert it", function() {
+    hashTable.insert("hello","world");
+    expect(hashTable.retrieve("hello")).toEqual("world"));
+  });
+
+  it("Retrieving a value we haven't stored should return undefined.", function() {
+    hashTable.insert("hello","world");
+    expect(hashTable.retrieve("hola")).toEqual(undefined));
+  });
+
+  it("We should be able to retrieve an object after we insert it", function() {
+    hashTable.insert("hello",{myObject: "totally awesome"}});
+    expect(hashTable.retrieve("hello")).toEqual({myObject: "totally awesome"}));
+  });
+
   it("should handle hash function collisions", function(){
     // force the hash function to return 0
     spyOn(window, 'getIndexBelowMaxForKey').andReturn(0);
@@ -19,6 +34,7 @@ describe("hashTable", function() {
     expect(hashTable.retrieve(v1)).toEqual(v1);
     expect(hashTable.retrieve(v2)).toEqual(v2);
   });
+
 
   // add more tests!
 });
