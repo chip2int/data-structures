@@ -47,11 +47,11 @@ var makeLinkedList = function(){
   return list;
 };
 
-var makeNode = function(value){
+var makeNode = function(value, target){
   var node = {};
-  node.value = value;
+  node.value = value; // Hash  --> {key, target}
   node.next = null;
-
+  node.target = target; // Used for hash table
   return node;
 };
 
