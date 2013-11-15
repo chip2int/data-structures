@@ -80,6 +80,13 @@ var DoubleLinkedList = function(){
     return ((this.getNodeWithTarget(target, node) === null) ? false:true);
   };
 
+  list.getPrevious = function(node) {
+    return (node.previous);
+  };
+
+  list.getValue = function(node) {
+    return(node.value);
+  };
   return list;
 };
 
