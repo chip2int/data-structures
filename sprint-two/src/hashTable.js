@@ -14,19 +14,23 @@ var HashTable = function(){
 
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  console.log(i);
-  this._storage.set(i, v);
+  if(this.retrieve(i) === undefined){
+    this._storage.set(i, makeLinkedList());
+  }
+  (this._storage.get(i)).addToTail(k,v);
 };
 
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(i);
+  var temp =this._storage.get(i);
+  return ((temp !== undefined) ? temp.getNodeTarget(k) : undefined);
 };
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
   this._storage.set(i, undefined);
 };
+
 
 // NOTE: For this code to work, you will NEED the code from hashTableHelpers.js
 // Start by loading those files up and playing with the functions it provides.

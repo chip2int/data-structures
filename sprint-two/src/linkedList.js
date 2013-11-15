@@ -5,7 +5,7 @@ var makeLinkedList = function(){
   list.tail = null;
 
   list.addToTail = function(){
-    var temp = makeNode(arguments[0]);
+    var temp = makeNode(arguments[0], arguments[1]);
     if (this.head === null) {
       this.head = temp;
     }
@@ -45,6 +45,11 @@ var makeLinkedList = function(){
     return null;
   };
 
+  list.getNodeTarget = function(key) {
+    var temp = this.getNodeWithTarget(key);
+    if (temp) return temp.target;
+    else return null;
+  };
 
   list.contains = function (target, node) {
     return ((this.getNodeWithTarget(target, node) === null) ? false:true);
