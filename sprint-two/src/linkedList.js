@@ -26,6 +26,28 @@ var makeLinkedList = function(){
     return retValue;
   };
 
+  list.removeNode = function(key) {
+    if (this.head.value == key) {
+      this.removeHead();
+    } else {
+      var parent = this.head;
+      var node = parent.next;
+
+      while (node) {
+        if (node.value == key) {
+          break;
+        }
+        else {
+          parent = node;
+          node = node.next;
+        }
+      }
+
+      parent.next = node.next;
+      delete node;
+    }
+  };
+
   list.getNodeWithTarget = function(target , node){
   //recursive solution
   // if(node === undefined){ node = list.head;}
