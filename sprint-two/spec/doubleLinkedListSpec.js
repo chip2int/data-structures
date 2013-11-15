@@ -15,6 +15,15 @@ describe("doubleLinkedList", function() {
     expect(doubleLinkedList.contains("4")).toEqual(false);
   });
 
+
+  it("After adding a node using addToTail and then removing that node using removeTail, contains should return false for that node's value",function(){
+    doubleLinkedList.addToTail("7");
+    doubleLinkedList.addToTail("1");
+    expect(doubleLinkedList.contains("1")).toEqual(true);
+    doubleLinkedList.removeTail();
+    expect(doubleLinkedList.contains("1")).toEqual(false);
+  });
+
   it("Get the previous node",function(){
     doubleLinkedList.addToTail("1");
     doubleLinkedList.addToTail("2");

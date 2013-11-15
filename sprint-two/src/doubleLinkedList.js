@@ -28,6 +28,15 @@ var DoubleLinkedList = function(){
     return retValue;
   };
 
+  list.removeTail = function (){
+    var temp = this.tail;
+    var retValue = temp.value;
+    this.tail = this.tail.previous;
+    this.tail.next = null;
+    delete temp;
+    return retValue;
+  };
+
   list.removeNode = function(key) {
     if (this.head.value == key) {
       this.removeHead();
