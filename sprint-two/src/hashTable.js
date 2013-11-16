@@ -1,5 +1,6 @@
 var HashTable = function(){
   this._limit = 8;
+  this._availableSlots = this._limit;
 
   // Use a limited array to store inserted elements.
   // It'll keep you from using too much space. Usage:
@@ -16,8 +17,13 @@ HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
   if(this.retrieve(k) === undefined){
     this._storage.set(i, makeLinkedList());
+    this._availableSlots--;
   }
   (this._storage.get(i)).addToTail(k,v);
+    //check the percentage of slots used and if needed resizes
+    if ((this._availableSlots / this._limit) < 0.25){
+      this.resize(this._limit*2);
+    }
 };
 
 HashTable.prototype.retrieve = function(k){
@@ -32,7 +38,21 @@ HashTable.prototype.remove = function(k){
   if (temp !== undefined) {
     temp.removeNode(k);
   }
+};
 
+HashTable.prototype.resize = function(newSize){
+    //create a new hastable with maxsize of 2 x last hashtable size
+  var oldStorage= this._storage;
+  var newStorage = makeLimitedArray(newSize);
+    // traverse original hash table and add values to new hashtable
+  for (var i = 0; i < oldStorage.length ; i++){
+    while(oldStorage[i] !== undefined && oldStorage[i].head !== undefined){
+      newStorage.insert(oldStorage[i].removeHead());
+    }
+  }
+  // replace old hashtable with temp
+  delete oldStorage;
+  this._storage = newStorage;
 };
 
 
