@@ -12,7 +12,7 @@ var treeMethods = {};
 treeMethods.addChild = function(value){
   var temp = makeTree(); // generate a new tree
   temp.value = value;
-  this.children.push(temp) ;
+  this.children.push(temp);
   temp.parent= this;
   //this lets you specify target only by referencing arrays e.g. this.children[1].children[0].addChild(). Do we want to target in some other way- value perhas?
 };

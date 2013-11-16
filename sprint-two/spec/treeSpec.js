@@ -38,7 +38,6 @@ describe("tree", function() {
     tree.addChild(0);
     tree.addChild("Hello");
     tree.addChild(false);
-    debugger;
     tree.children[1].addChild(5);
     tree.children[1].children[0].removeFromParent();
     expect(tree.contains(5)).toBe(false);
