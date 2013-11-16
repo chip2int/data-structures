@@ -17,6 +17,16 @@ treeMethods.addChild = function(value){
   //this lets you specify target only by referencing arrays e.g. this.children[1].children[0].addChild(). Do we want to target in some other way- value perhas?
 };
 
+treeMethods.depthFirstLog  = function(fn) {
+  //console.log(this.value);
+  fn.call(this, arguments);
+  if (this.children.length > 0) {
+    for (var i = 0; i< this.children.length; i++) {
+      this.depthFirstLog(this.children[i]);
+    }
+  }
+};
+
 treeMethods.removeFromParent = function(){
   //find the index of the current node in the previous array of children
   var childIndex = -1;
@@ -47,3 +57,5 @@ treeMethods.contains = function(target){
   }
   return result;
 };
+
+
