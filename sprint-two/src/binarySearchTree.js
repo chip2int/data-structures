@@ -31,6 +31,8 @@ var makeBinarySearchTree = function(value){
     }
   };
 
+  binaryTree.depthFirstLog = function(){};
+
   return binaryTree;
 };
 

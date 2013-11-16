@@ -4,13 +4,13 @@ var makeSet = function(){
 
 
 makeSet.prototype.add = function(value){
-  this._storage.value = true;
+  this._storage[value] = true;
 };
 
 makeSet.prototype.contains = function(target){
-  return (this._storage.value === undefined)?false:true;
+  return (this._storage[target] === undefined)?false:true;
 };
 
 makeSet.prototype.remove = function(target){
-  delete this._storage.target;
+  delete this._storage[target];
 };
