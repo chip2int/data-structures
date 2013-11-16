@@ -18,13 +18,14 @@ treeMethods.addChild = function(value){
 };
 
 treeMethods.depthFirstLog  = function(fn) {
-  //console.log(this.value);
+  // console.log(this.value);
   fn.call(this, arguments);
   if (this.children.length > 0) {
     for (var i = 0; i< this.children.length; i++) {
-      this.depthFirstLog(this.children[i]);
+      this.children[i].depthFirstLog(fn);
     }
   }
+  
 };
 
 treeMethods.removeFromParent = function(){

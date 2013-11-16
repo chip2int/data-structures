@@ -43,5 +43,23 @@ describe("tree", function() {
     expect(tree.contains(5)).toBe(false);
   });
 
+   it("depthFirstLog", function() {
+    tree.addChild(0);
+    tree.addChild("Hello");
+    tree.addChild(false);
+    tree.children[1].addChild(5);
+    // Creating an array and logging the values of
+    // of the tree in a DFS and checking the order
+    // using the location inside the array.
+    
+    var temp =[];
+    var fn = function() {temp.push(this.value)};
+    tree.depthFirstLog(fn);
+    expect(temp[0]).toBe(undefined);
+    expect(temp[3]).toEqual(5);
+  });
+
+
+
   // Add more tests here to test the functionality of tree.
 });
