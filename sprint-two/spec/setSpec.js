@@ -29,9 +29,10 @@ describe("set", function() {
 
   it("After adding a value to the set and then removing it, contains is not able to find that value", function() {
     set.add("Hello");
+    set.add({'Hello': 47});
     set.remove(5);
     expect(set.contains(5)).toEqual(false);
     expect(set.contains("Hello")).toEqual(true);
-
+    expect(set.contains({'Hello': 47})).toEqual(true);
   });
 });
