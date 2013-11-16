@@ -31,5 +31,7 @@ describe("set", function() {
     set.add("Hello");
     set.remove(5);
     expect(set.contains(5)).toEqual(false);
+    expect(set.contains("Hello")).toEqual(true);
+
   });
 });
