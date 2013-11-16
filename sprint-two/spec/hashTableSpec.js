@@ -61,6 +61,28 @@ describe("hashTable", function() {
     expect(hashTable.retrieve(v2)).toEqual(v2);
   });
 
+  it("After resize, hash table should have 2x as many slots", function(){
+    expect(hashTable.size()).toEqual(8);
+    hashTable.resize(16);
+    expect(hashTable.size()).toEqual(16);
+  });
+
+  it("After resize, all values should still be present", function(){
+    hashTable.insert("a", 1);
+    hashTable.insert("b", 2);
+    hashTable.insert("c", 3);
+    hashTable.insert("d", 4);
+    expect(hashTable.retrieve("c")).toEqual(3);
+    hashTable.insert("e", 5);
+    hashTable.insert("f", 6);
+    hashTable.insert("g", 7);
+    expect(hashTable.retrieve("a")).toEqual(1);
+    expect(hashTable.size()).toEqual(16);
+
+    // force the hash function to return 0
+  });
+
+
 
   // add more tests!
 });

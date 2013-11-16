@@ -21,9 +21,9 @@ HashTable.prototype.insert = function(k, v){
   }
   (this._storage.get(i)).addToTail(k,v);
     //check the percentage of slots used and if needed resizes
-    if ((this._availableSlots / this._limit) < 0.25){
-      this.resize(this._limit*2);
-    }
+  if ((this._availableSlots / this._limit) < 0.25){
+    this.resize(this.size()*2);
+  }
 };
 
 HashTable.prototype.retrieve = function(k){
@@ -43,18 +43,25 @@ HashTable.prototype.remove = function(k){
 HashTable.prototype.resize = function(newSize){
     //create a new hastable with maxsize of 2 x last hashtable size
   var oldStorage= this._storage;
-  var newStorage = makeLimitedArray(newSize);
-    // traverse original hash table and add values to new hashtable
-  for (var i = 0; i < oldStorage.length ; i++){
-    while(oldStorage[i] !== undefined && oldStorage[i].head !== undefined){
-      newStorage.insert(oldStorage[i].removeHead());
-    }
-  }
+  this._storage =  makeLimitedArray(newSize);
+  this._limit = newSize;
+  this._availableSlots = newSize;
+
+  var hTable = this;
+
+  // traverse original hash table and add values to new hashtable
+  oldStorage.each(function(v,k){
+    hTable.insert(k,v);
+  });
+
   // replace old hashtable with temp
   delete oldStorage;
-  this._storage = newStorage;
+  // this._storage = newStorage;
 };
 
+HashTable.prototype.size = function(k){
+  return (this._limit);
+};
 
 // NOTE: For this code to work, you will NEED the code from hashTableHelpers.js
 // Start by loading those files up and playing with the functions it provides.
