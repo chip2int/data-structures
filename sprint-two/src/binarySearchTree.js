@@ -24,15 +24,13 @@ var makeBinarySearchTree = function(value){
     if (this.isValLess(value)) {
       if (!this.left) {
         this.setLeft(makeBinarySearchTree(value));
-      }
-      else {
+      } else {
         this.left = this.children[0];
         this.left.insert(value);
       }
     } else {
       if(!this.right){
-        this.right = makeBinarySearchTree(value);
-        this.children[1] = this.right;
+        this.setRight(makeBinarySearchTree(value));
       } else {
         this.right = this.children[1];
         this.right.insert(value);
