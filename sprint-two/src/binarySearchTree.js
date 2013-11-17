@@ -5,6 +5,16 @@ var makeBinarySearchTree = function(value){
   binaryTree.left = binaryTree.children[0];
   binaryTree.right = binaryTree.children[1];
 
+  binaryTree.setLeft = function(tree){
+    this.left = tree;
+    this.children[0] = tree;
+  };
+
+  binaryTree.setRight = function(tree){
+    this.right = tree;
+    this.children[0] = tree;
+  };
+
 
   binaryTree.isValLess = function(value) {
     return (value <= this.value);
@@ -13,8 +23,7 @@ var makeBinarySearchTree = function(value){
   binaryTree.insert = function (value) {
     if (this.isValLess(value)) {
       if (!this.left) {
-        this.left = makeBinarySearchTree(value);
-        this.children[0] = this.left;
+        this.setLeft(makeBinarySearchTree(value));
       }
       else {
         this.left = this.children[0];
@@ -22,7 +31,7 @@ var makeBinarySearchTree = function(value){
       }
     } else {
       if(!this.right){
-        this.right =makeBinarySearchTree(value);
+        this.right = makeBinarySearchTree(value);
         this.children[1] = this.right;
       } else {
         this.right = this.children[1];
@@ -31,32 +40,5 @@ var makeBinarySearchTree = function(value){
     }
   };
 
-  binaryTree.depthFirstLog = function(){};
-
   return binaryTree;
 };
-
-
-
-// function addToNode(node, value) {
-
-//   if (!node) {
-//     node.
-//   }
-//   if (isValLess(node, value)) {
-//     addToNode(node.left, value);
-//   }
-//   else {
-//     addToNode(node.right, value);
-//   }
-
-// }
-
-
-// var makeTree = function(value){
-//   var newTree = Object.create(treeMethods);
-//   newTree.value = value;
-//   newTree.children = [];
-//   newTree.parent= null;
-//   return newTree;
-// };

@@ -24,10 +24,12 @@ var makeLimitedArray = function(limit){
     storage[index] = value;
   };
   limitedArray.each = function(callback){
-    console.log(storage.length);
-    for(var i = 0; i < storage.length; i++){
-      callback(storage[i], i, storage);
-    }
+    if (Array.isArray(this)){
+      for(var i = 0; i < storage.length; i++){
+        callback(storage[i], i, storage);
+      }
+    } else {console.log( "you just ran each for arrays on something else");} // debug
+
   };
 
   var checkLimit = function(index){

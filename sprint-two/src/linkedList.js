@@ -3,27 +3,31 @@ var makeLinkedList = function(){
   var list = {};
   list.head = null;
   list.tail = null;
+  list._size=0;
 
   list.addToTail = function(){
     var temp = makeNode(arguments[0], arguments[1]);
-    if (this.head === null) {
-      this.head = temp;
-    }
+    (this.head === null) && (this.head = temp);
+
     if (this.tail === null) {
       this.tail =  temp;
-    }
-    else {
+    } else {
       this.tail.next = temp;
       this.tail = temp;
     }
+    this._size++;
   };
 
   list.removeHead = function(){
     var next = this.head.next;
     var retValue = this.head.value;
-    delete this.head;
     this.head = next;
+    this._size--;
     return retValue;
+  };
+
+  list.getSize = function() {
+    return this._size;
   };
 
   list.removeNode = function(key) {
@@ -44,21 +48,23 @@ var makeLinkedList = function(){
       }
 
       parent.next = node.next;
+      this._size--;
       delete node;
     }
   };
 
-  list.getNodeWithTarget = function(target , node){
-  //recursive solution
-  // if(node === undefined){ node = list.head;}
-  // if (node.value === target){return true;}
-  // else if (node.next === null){return false;}
-  // else {return this.contains(target,node.next);}
+  list.traverse = function(func){
+    var current = this.head;
+    while(current){
+      func.call(this, current.value , current.target);
+      current= current.next;
+    }
+  };
 
-  // while solution
-    if(node === undefined){ node = this.head;}
+  list.getNodeWithTarget = function(target , node){
+    (node === undefined) && (node = this.head);
     while(node !== null){
-      if(node.value=== target){
+      if(node.value === target){
         return node;
       } else {
         node = node.next;
@@ -87,5 +93,3 @@ var makeNode = function(value, target){
   node.target = target; // Used for hash table
   return node;
 };
-
-

@@ -14,6 +14,7 @@ var HashTable = function(){
 };
 
 HashTable.prototype.insert = function(k, v){
+  //debugger;
   var i = getIndexBelowMaxForKey(k, this._limit);
   if(this.retrieve(k) === undefined){
     this._storage.set(i, makeLinkedList());
@@ -33,15 +34,29 @@ HashTable.prototype.retrieve = function(k){
 };
 
 HashTable.prototype.remove = function(k){
+  debugger;
   var i = getIndexBelowMaxForKey(k, this._limit);
   var temp = this._storage.get(i);
   if (temp !== undefined) {
     temp.removeNode(k);
   }
+
+  if(this._storage.get(i).getSize() < 1){
+    this._storage.set(i, undefined);
+    this._availableSlots++; // Keep track of the empty slots in storage
+  }
+
+  // if more than 75% of the array is empty, make the array smaller.
+  // Note: this check only happens on node removal which means that Nodes will start at 8 and only shrink after the first time an array is removed.
+  if ((this._availableSlots / this._limit) > 0.75){
+    this.resize(this.size()/2);
+  }
 };
 
 HashTable.prototype.resize = function(newSize){
-    //create a new hastable with maxsize of 2 x last hashtable size
+  //create a new hastable with maxsize of 2 x last hashtable size
+  debugger;
+  console.log("Resize" + newSize)
   var oldStorage= this._storage;
   this._storage =  makeLimitedArray(newSize);
   this._limit = newSize;
@@ -50,8 +65,12 @@ HashTable.prototype.resize = function(newSize){
   var hTable = this;
 
   // traverse original hash table and add values to new hashtable
-  oldStorage.each(function(v,k){
-    hTable.insert(k,v);
+  oldStorage.each(function(item) {
+
+    item.traverse(function(k,v){
+    // Traverse the linked list;
+      hTable._storage.insert(k,v);
+    });
   });
 
   // replace old hashtable with temp
